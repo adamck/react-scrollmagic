@@ -181,10 +181,6 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
       this.scene.enabled(enabled);
     }
 
-    console.log('====================================')
-    console.log('update comp', pin)
-    console.log('====================================')
-
     if (pin !== undefined && pin !== prevProps.pin) {
       const element = this.ref;
       if (pin) {
