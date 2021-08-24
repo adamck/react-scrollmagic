@@ -44,8 +44,8 @@ export type SceneBaseState = {
 
 const refOrInnerRef = (child: any) => {
   if (
-    child.type && 
-    child.type.$$typeof && 
+    child.type &&
+    child.type.$$typeof &&
     child.type.$$typeof.toString() === 'Symbol(react.forward_ref)')
   {
     return 'ref';
@@ -61,8 +61,8 @@ const refOrInnerRef = (child: any) => {
 
 const isGSAP = (child) => {
   if (
-    React.Children.count(child) === 1 && 
-    child.type && 
+    React.Children.count(child) === 1 &&
+    child.type &&
     (child.type.displayName === 'Tween' || child.type.displayName === 'Timeline')
   ) {
     return true;
@@ -153,6 +153,7 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
       triggerHook,
       reverse,
       enabled,
+      pin,
     } = this.props;
 
     if (duration !== undefined && duration !== prevProps.duration) {
@@ -177,6 +178,10 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
 
     if (enabled !== undefined && enabled !== prevProps.enabled) {
       this.scene.enabled(enabled);
+    }
+
+    if (pin !== undefined && pin !== prevProps.pin) {
+      this.setPin(this.scene, element, pin, pinSettings);
     }
   }
 
@@ -226,7 +231,7 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
 
     const child = getChild(children, progress, event);
 
-    // TODO: Don't add ref to stateless or stateful components 
+    // TODO: Don't add ref to stateless or stateful components
 
     return React.cloneElement(child, { [refOrInnerRef(child)]: ref => this.ref = ref });
   }
