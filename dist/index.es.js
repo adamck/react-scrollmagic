@@ -3705,7 +3705,8 @@ var SceneBase = function (_React$PureComponent) {
           triggerHook = _props2.triggerHook,
           reverse = _props2.reverse,
           enabled = _props2.enabled,
-          pin = _props2.pin;
+          pin = _props2.pin,
+          pinSettings = _props2.pinSettings;
 
 
       if (duration !== undefined && duration !== prevProps.duration) {
@@ -3731,6 +3732,7 @@ var SceneBase = function (_React$PureComponent) {
       }
 
       if (pin !== undefined && pin !== prevProps.pin) {
+        var element = this.ref;
         this.setPin(this.scene, element, pin, pinSettings);
       }
     }

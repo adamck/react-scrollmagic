@@ -154,6 +154,7 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
       reverse,
       enabled,
       pin,
+      pinSettings,
     } = this.props;
 
     if (duration !== undefined && duration !== prevProps.duration) {
@@ -181,6 +182,7 @@ class SceneBase extends React.PureComponent<SceneBaseProps, SceneBaseState> {
     }
 
     if (pin !== undefined && pin !== prevProps.pin) {
+      const element = this.ref;
       this.setPin(this.scene, element, pin, pinSettings);
     }
   }
