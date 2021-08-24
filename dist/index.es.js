@@ -3731,9 +3731,17 @@ var SceneBase = function (_React$PureComponent) {
         this.scene.enabled(enabled);
       }
 
+      console.log('====================================');
+      console.log('update comp', pin);
+      console.log('====================================');
+
       if (pin !== undefined && pin !== prevProps.pin) {
         var element = this.ref;
-        this.setPin(this.scene, element, pin, pinSettings);
+        if (pin) {
+          this.setPin(this.scene, element, pin, pinSettings);
+        } else {
+          this.scene.removePin(true);
+        }
       }
     }
   }, {
